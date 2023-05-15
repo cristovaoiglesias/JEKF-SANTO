@@ -1,4 +1,4 @@
-# JEKF-SANTO
+# JEKF-SANTO - Specific initiAl coNdiTiOn (SANTO)
 
 
 ## This repository has the code and data used in paper: How To NOT Make the Joint Extended Kalman Filter Fail with Unstructured Mechanistic Models
