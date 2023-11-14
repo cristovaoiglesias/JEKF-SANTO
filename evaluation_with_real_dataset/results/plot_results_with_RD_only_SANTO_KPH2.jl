@@ -9,33 +9,35 @@ theme(:default)
 # gr();
 # plotly();
 
-xv_online_measurement_RD_AAV=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/Xv_bioreactor_dt2_online.csv",DataFrame;header=false )
-timeEstimations=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/timeEstimations.csv",DataFrame;header=false )
-timeRD=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/timeObsData.csv",DataFrame;header=false )
+results_path="/Users/cristovao/PhD_courses/Thesis/JEKF-SANTO/evaluation_with_real_dataset/results"
 
-SANTO_Xv=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-SANTO_Xv.csv",DataFrame;header=false )
-SANTO_GLC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-SANTO_GLC.csv",DataFrame;header=false )
-SANTO_LAC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-SANTO_LAC.csv",DataFrame;header=false )
-SANTO_rAAV=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-SANTO_rAAV.csv",DataFrame;header=false )
-SANTO_muGLC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-SANTO_muGLC.csv",DataFrame;header=false )
-SANTO_muLAC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-SANTO_muLAC.csv",DataFrame;header=false )
-SANTO_muAAV=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-SANTO_muAAV.csv",DataFrame;header=false )
+xv_online_measurement_RD_AAV=CSV.read(results_path*"/Xv_bioreactor_dt2_online.csv",DataFrame;header=false )
+timeEstimations=CSV.read(results_path*"/timeEstimations.csv",DataFrame;header=false )
+timeRD=CSV.read(results_path*"/timeObsData.csv",DataFrame;header=false )
 
-Classic_Xv=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-Classic_Xv.csv",DataFrame;header=false )
-Classic_GLC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-Classic_GLC.csv",DataFrame;header=false )
-Classic_LAC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-Classic_LAC.csv",DataFrame;header=false )
-Classic_rAAV=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-Classic_rAAV.csv",DataFrame;header=false )
-Classic_muGLC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-Classic_muGLC.csv",DataFrame;header=false )
-Classic_muLAC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-Classic_muLAC.csv",DataFrame;header=false )
-Classic_muAAV=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-Classic_muAAV.csv",DataFrame;header=false )
+SANTO_Xv=CSV.read(results_path*"/JEKF-SANTO_Xv.csv",DataFrame;header=false )
+SANTO_GLC=CSV.read(results_path*"/JEKF-SANTO_GLC.csv",DataFrame;header=false )
+SANTO_LAC=CSV.read(results_path*"/JEKF-SANTO_LAC.csv",DataFrame;header=false )
+SANTO_rAAV=CSV.read(results_path*"/JEKF-SANTO_rAAV.csv",DataFrame;header=false )
+SANTO_muGLC=CSV.read(results_path*"/JEKF-SANTO_muGLC.csv",DataFrame;header=false )
+SANTO_muLAC=CSV.read(results_path*"/JEKF-SANTO_muLAC.csv",DataFrame;header=false )
+SANTO_muAAV=CSV.read(results_path*"/JEKF-SANTO_muAAV.csv",DataFrame;header=false )
 
-KPH2_Xv=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-KPH2_Xv.csv",DataFrame;header=false )
-KPH2_GLC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-KPH2_GLC.csv",DataFrame;header=false )
-KPH2_LAC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-KPH2_LAC.csv",DataFrame;header=false )
-KPH2_rAAV=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-KPH2_rAAV.csv",DataFrame;header=false )
-KPH2_muGLC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-KPH2_muGLC.csv",DataFrame;header=false )
-KPH2_muLAC=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-KPH2_muLAC.csv",DataFrame;header=false )
-KPH2_muAAV=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-KPH2_muAAV.csv",DataFrame;header=false )
+Classic_Xv=CSV.read(results_path*"/JEKF-Classic_Xv.csv",DataFrame;header=false )
+Classic_GLC=CSV.read(results_path*"/JEKF-Classic_GLC.csv",DataFrame;header=false )
+Classic_LAC=CSV.read(results_path*"/JEKF-Classic_LAC.csv",DataFrame;header=false )
+Classic_rAAV=CSV.read(results_path*"/JEKF-Classic_rAAV.csv",DataFrame;header=false )
+Classic_muGLC=CSV.read(results_path*"/JEKF-Classic_muGLC.csv",DataFrame;header=false )
+Classic_muLAC=CSV.read(results_path*"/JEKF-Classic_muLAC.csv",DataFrame;header=false )
+Classic_muAAV=CSV.read(results_path*"/JEKF-Classic_muAAV.csv",DataFrame;header=false )
+
+KPH2_Xv=CSV.read(results_path*"/JEKF-KPH2_Xv.csv",DataFrame;header=false )
+KPH2_GLC=CSV.read(results_path*"/JEKF-KPH2_GLC.csv",DataFrame;header=false )
+KPH2_LAC=CSV.read(results_path*"/JEKF-KPH2_LAC.csv",DataFrame;header=false )
+KPH2_rAAV=CSV.read(results_path*"/JEKF-KPH2_rAAV.csv",DataFrame;header=false )
+KPH2_muGLC=CSV.read(results_path*"/JEKF-KPH2_muGLC.csv",DataFrame;header=false )
+KPH2_muLAC=CSV.read(results_path*"/JEKF-KPH2_muLAC.csv",DataFrame;header=false )
+KPH2_muAAV=CSV.read(results_path*"/JEKF-KPH2_muAAV.csv",DataFrame;header=false )
 
 
 
@@ -87,6 +89,7 @@ pp=plot(plot0,plot1,plot2,plot3,plot4,plot5,plot6, layout=(4,2),size = (1000,900
 # savefig(abs_path*"/JEKF-SANTO/results_analyze/figs/real_dt/estimations_RD_Puncorrelated_sp0.png")
 
 display(pp)
+png("RDT_B_with_MRDE_PC_and_SPECIFIC_P0")
 
 
 
@@ -158,7 +161,7 @@ display(pp)
 #
 #
 #
-# test=CSV.read("/Users/cristovao/PhD_courses/Thesis/EKF4AAVproduction/results/JEKF-SANTO_LAC.csv",DataFrame;header=false )
+# test=CSV.read("/JEKF-SANTO_LAC.csv",DataFrame;header=false )
 # plot(Array(test))
 #
 #
