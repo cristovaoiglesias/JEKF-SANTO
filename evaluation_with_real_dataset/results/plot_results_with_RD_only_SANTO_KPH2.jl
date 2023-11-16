@@ -43,47 +43,54 @@ KPH2_muAAV=CSV.read(results_path*"/JEKF-KPH2_muAAV.csv",DataFrame;header=false )
 
 
 
-println("PC and specific P(0)")
+# println("PC and specific P(0)")
 
 plot0=plot(Array(timeRD)',Array(xv_online_measurement_RD_AAV),color=:lightblue, label = "Xv online (noise)", lw=5.5, xlabel=L"time(h)",ylabel=L"Xv(    cells/mL)")
 plot!(Array(timeEstimations)',Array(Classic_Xv),color=:purple, label = "JEKF-Classic", lw=2.5,xlabel=L"time(h)",ylabel=L"Xv( cells/mL)")
 plot!(Array(timeEstimations)',Array(SANTO_Xv),color=:blue, label = "JEKF-SANTO", lw=2.5,xlabel=L"time(h)",ylabel=L"Xv(    cells/mL)")
 plot!(Array(timeEstimations)',Array(KPH2_Xv),color=:green,label = "JEKF-KPH2",  lw=2.5,xlabel=L"time(h)",ylabel=L"Xv(    cells/mL)")
 plot!(legend=:bottomright,size = (650,450))
+annotate!(70, 1.6e6, text("A", :left, 10, 17))
 
 plot1=plot(Array(timeEstimations)',Array(SANTO_GLC),color=:blue, label = "JEKF-SANTO", lw=3.5, xlabel=L"time(h)",ylabel=L"GLC(mM)")
 plot!(Array(timeEstimations)',Array(KPH2_GLC),color=:green,label = "JEKF-KPH2",  lw=3.5,xlabel=L"time(h)",ylabel=L"GLC(mM)")
 plot!(Array(timeEstimations)',Array(Classic_GLC),color=:purple,label = "JEKF-Classic",  lw=3.5,xlabel=L"time(h)",ylabel=L"GLC(mM)")
 Plots.scatter!([4679-3;6144-3]/60,[22.00943658;17.707466],color=:red, label = "Ground truth", ls=:dot ,lw=5.5, xlabel=L"time(h)",ylabel=L"GLC(mM)")
 plot!(legend=:bottomleft)
+annotate!(80, 20, text("B", :left, 10, 17))
 
 plot2=plot(Array(timeEstimations)',Array(SANTO_LAC),color=:blue, label = "JEKF-SANTO", lw=3.5, xlabel=L"time(h)",ylabel=L"LAC(mM)")
 plot!(Array(timeEstimations)',Array(KPH2_LAC),color=:green,label = "JEKF-KPH2",  lw=3.5,xlabel=L"time(h)",ylabel=L"LAC(mM)")
 plot!(Array(timeEstimations)',Array(Classic_LAC),color=:purple,label = "JEKF-Classic",  lw=3.5,xlabel=L"time(h)",ylabel=L"LAC(mM)")
 Plots.scatter!([4679-3;6144-3]/60,[9.10352484;11.54593394],color=:red, label = "Ground truth", ls=:dot ,lw=5.5, xlabel=L"time(h)",ylabel=L"LAC(mM)")
 plot!(legend=false)
+annotate!(80, 11, text("C", :left, 10, 17))
 
 plot3=plot(Array(timeEstimations)',Array(SANTO_rAAV),color=:blue, label = "JEKF-SANTO", lw=3.5, xlabel=L"time(h)",ylabel=L"rAAV (VG/mL)")
 plot!(Array(timeEstimations)',Array(KPH2_rAAV),color=:green,label = "JEKF-KPH2",  lw=3.5,xlabel=L"time(h)",ylabel=L"rAAV (VG/mL)")
 plot!(Array(timeEstimations)',Array(Classic_rAAV),color=:purple,label = "JEKF-Classic",  lw=3.5,xlabel=L"time(h)",ylabel=L"rAAV (VG/mL)")
 Plots.scatter!([3252-3;4679-3;6144-3]/60,[0;3190000000;7010000000],color=:red, label = "Ground truth", ls=:dot ,lw=5.5, xlabel=L"time(h)",ylabel=L"rAAV (VG/mL)")
 plot!(legend=false)
-
+annotate!(80, 5e9, text("D", :left, 10, 17))
 
 plot4=plot(Array(timeEstimations)',Array(SANTO_muGLC),color=:blue, label = "JEKF-SANTO", lw=3.5, xlabel=L"time(h)",ylabel=L"\mu{GLC}(mmol10^{-6}c~h^-)")
 plot!(Array(timeEstimations)',Array(KPH2_muGLC),color=:green,label = "JEKF-KPH2",  lw=3.5,xlabel=L"time(h)",ylabel=L"\mu{GLC}(mmol10^{-6}c~h^-)")
 plot!(Array(timeEstimations)',Array(Classic_muGLC),color=:purple,label = "JEKF-Classic",  lw=3.5,xlabel=L"time(h)",ylabel=L"\mu{GLC}(mmol10^{-6}c~h^-)")
 plot!(legend=false)
+annotate!(80,  1.3e-7, text("E", :left, 10, 17))
 
 plot5=plot(Array(timeEstimations)',Array(SANTO_muLAC),color=:blue, label = "JEKF-SANTO", lw=3.5, xlabel=L"time(h)",ylabel=L"\mu{LAC}(mmol10^{-6}c~h^-)")
 plot!(Array(timeEstimations)',Array(KPH2_muLAC),color=:green,label = "JEKF-KPH2",  lw=3.5,xlabel=L"time(h)",ylabel=L"\mu{LAC}(mmol10^{-6}c~h^-)")
 plot!(Array(timeEstimations)',Array(Classic_muLAC),color=:purple,label = "JEKF-Classic",  lw=3.5,xlabel=L"time(h)",ylabel=L"\mu{LAC}(mmol10^{-6}c~h^-)")
 plot!(legend=false)
+annotate!(80, 4e-8, text("F", :left, 10, 17))
 
 plot6=plot(Array(timeEstimations)',Array(SANTO_muAAV),color=:blue, label = "JEKF-SANTO", lw=3.5, xlabel=L"time(h)",ylabel=L"\mu{rAAV}(10^{9} vg/mL~c~h^6)")
 plot!(Array(timeEstimations)',Array(KPH2_muAAV),color=:green,label = "JEKF-KPH2",  lw=3.5,xlabel=L"time(h)",ylabel=L"\mu{rAAV}(10^{9} vg/mL~c~h^6)")
 plot!(Array(timeEstimations)',Array(Classic_muAAV),color=:purple,label = "JEKF-Classic",  lw=3.5,xlabel=L"time(h)",ylabel=L"\mu{rAAV}(10^{9} vg/mL~c~h^6)")
 plot!(legend=false)
+annotate!(80, 90, text("G", :left, 10, 17))
+
 
 pp=plot(plot0,plot1,plot2,plot3,plot4,plot5,plot6, layout=(4,2),size = (1000,900))
 # savefig(abs_path*"/JEKF-SANTO/results_analyze/figs/real_dt/estimations_RD_Puncorrelated_sp0.png")

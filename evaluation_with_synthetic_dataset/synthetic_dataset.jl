@@ -1,6 +1,11 @@
 using DifferentialEquations, DiffEqFlux, Plots
 using Noise, BlackBoxOptim
 using XLSX, DataFrames
+using Printf
+# using Plots; gr();
+using Infiltrator
+using Measures
+using LaTeXStrings
 
 
 # ODE system for mAb production used in "Bioprocess optimization under uncertainty using ensemble modeling (2017)"
@@ -51,7 +56,7 @@ u0 = [2e8    ,   2e8 ,   29.1, 4.9, 0.0, 0.310, 80.6] #initial condition from "B
 tstart=0.0
 tend=103.0
 sampling= .125 #7.5 min
-sampling= 1.0 #7.5 min
+# sampling= 1.0 #1 h
 tgrid=tstart:sampling:tend
 #parameters from the paper "Bioprocess optimization under uncertainty using ensemble modeling (2017)" with low mAb titer.
 p = [5.8e-2, 0.75, 0.075, 171.756, 28.484, 3e-2, 1.76, 0.05511, 1.061e8, 4.853e-14, 5.57e8, 3.4e-13, 4, 9.6e-3, 1.399, 4.27e-1, 0.1, 2, 7.21e-9 ]
@@ -112,12 +117,12 @@ online_Xv_noise_7_5min_Htiter=[2.9118196860988194e8, 3.9905428721354675e8, 2.028
 
 
 
-
-
-
-plots=plot(tgrid,online_Xv_noise_7_5min_Ltiter,color="lightgreen", label = false, ylabel=["[Xv]"  "[GLC]" "[GLN]" "[LAC]" "[AMM]" "[mAb]"],layout=(3,3) )
-plot!(tgrid,online_Xv_noise_7_5min_Htiter,color="lightblue", label = false, ylabel=["[Xv]"  "[GLC]" "[GLN]" "[LAC]" "[AMM]" "[mAb]"],layout=(3,3) )
-plot!(sol2.t,transpose(sol2),color="blue", lw=1.5, label = false, ylabel=["[Xv]" "[Xd]"  "[GLC]" "[GLN]" "[LAC]" "[AMM]" "[mAb]"], layout=(3,3))
-plot!(sol3.t,transpose(sol3),color="green", lw=1.5, label = false, ylabel=["[Xv]" "[Xd]"  "[GLC]" "[GLN]" "[LAC]" "[AMM]" "[mAb]"], layout=(3,3))
-plot!(sol.t,transpose(sol), size=(1000,800),color="red", lw=1.5, label = false, ylabel=["[Xv]" "[Xd]"  "[GLC]" "[GLN]" "[LAC]" "[AMM]" "[mAb]"], layout=(3,3))
+lws=3.5
+gr( xtickfontsize=16, ytickfontsize=16, xguidefontsize=16, yguidefontsize=16, legendfontsize=16);
+plots=plot(tgrid,online_Xv_noise_7_5min_Ltiter,color="lightgreen", lw=lws,label = "Xv noise run C-SD", xlabel=L"time(h)",ylabel=[L"Xv (cell/L)" L"Xt (cell/L)" L"GLC (mM)" L"GLN(mM)" L"LAC(mM)" L"AMM(mM)" L"mAb (mg/L)"],layout=(7,1) )
+plot!(tgrid,online_Xv_noise_7_5min_Htiter,color="lightblue", lw=lws,label = "Xv noise run B-SD",layout=(7,1) )
+plot!(sol2.t,transpose(sol2),color="blue", lw=lws, label = " run C-SD", layout=(7,1))
+plot!(sol3.t,transpose(sol3),color="green", lw=lws, label = " run B-SD", layout=(7,1))
+plot!(sol.t,transpose(sol),color="red", lw=lws, label = " run A-SD", layout=(7,1))
+plot!(legend=:outertopright, size=(1000,2000),left_margin=25mm)
 display(plots)
