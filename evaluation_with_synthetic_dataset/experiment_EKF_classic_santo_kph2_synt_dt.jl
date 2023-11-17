@@ -403,9 +403,9 @@ lws=3.5
 gr( xtickfontsize=16, ytickfontsize=16, xguidefontsize=16, yguidefontsize=16, legendfontsize=16);
 plots=plot(tgrid,online_Xv_noise_7_5min_Ltiter,color="lightgreen", lw=lws,label = "Xv noise run C-SD", xlabel=L"time(h)",ylabel=[L"Xv (cell/L)" L"Xt (cell/L)" L"GLC (mM)" L"GLN(mM)" L"LAC(mM)" L"AMM(mM)" L"mAb (mg/L)"],layout=(7,1) )
 plot!(tgrid,online_Xv_noise_7_5min_Htiter,color="lightblue", lw=lws,label = "Xv noise run B-SD",layout=(7,1) )
-plot!(sol2.t,transpose(sol2),color="blue", lw=lws, label = " run C-SD", layout=(7,1))
-plot!(sol3.t,transpose(sol3),color="green", lw=lws, label = " run B-SD", layout=(7,1))
 plot!(sol.t,transpose(sol),color="red", lw=lws, label = " run A-SD", layout=(7,1))
+plot!(sol2.t,transpose(sol2),color="blue", lw=lws, label = " run B-SD", layout=(7,1))
+plot!(sol3.t,transpose(sol3),color="green", lw=lws, label = " run C-SD", layout=(7,1))
 plot!(legend=:outertopright, size=(1000,2000),left_margin=25mm)
 display(plots)
 png("all_runs_SD")
@@ -415,9 +415,9 @@ lws=3.5
 gr( xtickfontsize=16, ytickfontsize=16, xguidefontsize=16, yguidefontsize=16, legendfontsize=16);
 plots=plot(tgrid,online_Xv_noise_7_5min_Ltiter,color="lightgreen", lw=lws,label = "Xv noise run C-SD", xlabel=L"time(h)",ylabel=[L"Xv (cell/L)" L"mAb (mg/L)"],layout=(2,1) )
 plot!(tgrid,online_Xv_noise_7_5min_Htiter,color="lightblue", lw=lws,label = "Xv noise run B-SD",layout=(2,1) )
-plot!(sol2.t,transpose(sol2[[1,7],:]),color="blue", lw=lws, label = " run C-SD", layout=(2,1))
-plot!(sol3.t,transpose(sol3[[1,7],:]),color="green", lw=lws, label = " run B-SD", layout=(2,1))
 plot!(sol.t,transpose(sol[[1,7],:]),color="red", lw=lws, label = " run A-SD", layout=(2,1))
+plot!(sol2.t,transpose(sol2[[1,7],:]),color="blue", lw=lws, label = " run B-SD", layout=(2,1))
+plot!(sol3.t,transpose(sol3[[1,7],:]),color="green", lw=lws, label = " run C-SD", layout=(2,1))
 plot!(legend=:outertopright, size=(1000,800),left_margin=25mm)
 display(plots)
 png("Xv_mAb_runs_SD")
