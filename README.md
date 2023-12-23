@@ -20,14 +20,14 @@ This dataset was generated with Julia using in the following paper
 
 ### Experiments with Real dataset comparing SANTO vs KPH2 
 #### Conditions
--  RMDE-PC and specific $\textbf{P}(t=0)$ : [Matlab code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_real_dataset)
+-  MRDE-PC and specific $\textbf{P}(t=0)$ : [Matlab code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_real_dataset)
 
 
 ### Experiments with Synthetic dataset comparing SANTO vs KPH2
 #### Conditions
-- RMDE-PC and standard $\textbf{P}(t=0)$: [Julia code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_synthetic_dataset)
-- RMDE-PC and specific $\textbf{P}(t=0)$: [Julia code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_synthetic_dataset)
-- RMDE-PU and standard $\textbf{P}(t=0)$: [Julia code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_synthetic_dataset)
-- RMDE-PU and specific $\textbf{P}(t=0)$: [Julia code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_synthetic_dataset)
+- MRDE-PC and standard $\textbf{P}(t=0)$: [Julia code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_synthetic_dataset)
+- MRDE-PC and specific $\textbf{P}(t=0)$: [Julia code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_synthetic_dataset)
+- MRDE-PU and standard $\textbf{P}(t=0)$: [Julia code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_synthetic_dataset)
+- MRDE-PU and specific $\textbf{P}(t=0)$: [Julia code](https://github.com/cristovaoiglesias/JEKF-SANTO/tree/main/evaluation_with_synthetic_dataset)
 
 
