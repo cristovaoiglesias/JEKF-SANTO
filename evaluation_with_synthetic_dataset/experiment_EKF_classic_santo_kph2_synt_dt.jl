@@ -605,27 +605,27 @@ H = [1 0 0 0 0 0 0 1]
 result_KPH2=EKF(R2,p_Q,ic,H,online_Xv_noise_7_5min_Htiter,process_model_and_MRDE_PC!)
 
 lws=3.5
-gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=13);
-plot1=plot(tProcess_total,online_Xv_noise_7_5min_Htiter,color="lightblue", ylim = [0, 2.2e9], label = "Xv online noise", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
+gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+plot1=plot(tProcess_total,online_Xv_noise_7_5min_Htiter,color="lightblue", ylim = [0, 2.2e9], label = "Xv noise run B-SD", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
 plot!(tProcess,result_classic[1], label = "JEKF-Classic",color=:purple , lw=lws)
-plot!(tProcess,result_santo[1], label = "JEKF-Classic",color=:blue  , lw=lws)
-plot!(tProcess,result_KPH2[1], label = "JEKF-Classic",color=:green  , lw=lws)
-plot!(sol2.t,sol2[1,:],color=:red ,  ls=:dot, label = "Ground truth", lw=lws)
+plot!(tProcess,result_santo[1], label = "JEKF-SANTO",color=:blue  , lw=lws)
+plot!(tProcess,result_KPH2[1], label = "JEKF-KPH2",color=:green  , lw=lws)
+plot!(sol2.t,sol2[1,:],color=:red ,  ls=:dot, label = "Ground truth run B-SD", lw=lws)
 plot!(legend=:outertopright)
 annotate!(15, 2e9, text("A", :left, 10, 17))
 
-plot2=hline([9.21e-9] ,color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
+plot2=hline([9.21e-9] ,color=:red , ls=:dot, label = "Ground truth run B-SD" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
 plot!(tProcess,result_classic[8], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[8], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[8], label = "JEKF-KPH2",color=:green , lw=lws )
 plot!(legend=:outertopright)
 annotate!(15, 8e-9, text("B", :left, 10, 17))
 
-plot3=plot(sol2.t,sol2[7,:], color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
+plot3=plot(sol2.t,sol2[7,:], color=:red , ls=:dot, label = "Ground truth run B-SD" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
 plot!(tProcess,result_classic[7], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[7], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[7], label = "JEKF-KPH2",color=:green , lw=lws )
-plot!(legend=:topleft)
+plot!(legend=:outertopright)
 annotate!(15, 500, text("C", :left, 10, 17))
 
 pp=plot(plot1,plot2,plot3, layout=(3,1),size = (900,800))
@@ -679,27 +679,27 @@ H = [1 0 0 0 0 0 0 1]
 result_KPH2=EKF(R2,p_Q,ic,H,online_Xv_noise_7_5min_Htiter,process_model_and_MRDE_PC!)
 
 lws=3.5
-gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=13);
-plot1=plot(tProcess_total,online_Xv_noise_7_5min_Htiter,color="lightblue", ylim = [0, 2.2e9], label = "Xv online noise", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
+gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+plot1=plot(tProcess_total,online_Xv_noise_7_5min_Htiter,color="lightblue", ylim = [0, 2.2e9], label = "Xv noise run B-SD", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
 plot!(tProcess,result_classic[1], label = "JEKF-Classic",color=:purple , lw=lws)
-plot!(tProcess,result_santo[1], label = "JEKF-Classic",color=:blue  , lw=lws)
-plot!(tProcess,result_KPH2[1], label = "JEKF-Classic",color=:green  , lw=lws)
-plot!(sol2.t,sol2[1,:],color=:red ,  ls=:dot, label = "Ground truth", lw=lws)
+plot!(tProcess,result_santo[1], label = "JEKF-SANTO",color=:blue  , lw=lws)
+plot!(tProcess,result_KPH2[1], label = "JEKF-KPH2",color=:green  , lw=lws)
+plot!(sol2.t,sol2[1,:],color=:red ,  ls=:dot, label = "Ground truth run B-SD", lw=lws)
 plot!(legend=:outertopright)
 annotate!(15, 2e9, text("A", :left, 10, 17))
 
-plot2=hline([9.21e-9] ,color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
+plot2=hline([9.21e-9] ,color=:red , ls=:dot, label = "Ground truth run B-SD" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
 plot!(tProcess,result_classic[8], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[8], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[8], label = "JEKF-KPH2",color=:green , lw=lws )
 plot!(legend=:outertopright)
 annotate!(15, 6e-9, text("B", :left, 10, 17))
 
-plot3=plot(sol2.t,sol2[7,:], color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
+plot3=plot(sol2.t,sol2[7,:], color=:red , ls=:dot, label = "Ground truth run B-SD" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
 plot!(tProcess,result_classic[7], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[7], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[7], label = "JEKF-KPH2",color=:green , lw=lws )
-plot!(legend=:topleft)
+plot!(legend=:outertopright)
 annotate!(15, 500, text("C", :left, 10, 17))
 
 pp=plot(plot1,plot2,plot3, layout=(3,1),size = (900,800))
@@ -754,27 +754,27 @@ H = [1 0 0 0 0 0 0 1]
 result_KPH2=EKF(R2,p_Q,ic,H,online_Xv_noise_7_5min_Htiter,process_model_and_MRDE_PU!)
 
 lws=3.5
-gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=13);
-plot1=plot(tProcess_total,online_Xv_noise_7_5min_Htiter,color="lightblue", ylim = [0, 2.2e9], label = "Xv online noise", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
+gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+plot1=plot(tProcess_total,online_Xv_noise_7_5min_Htiter,color="lightblue", ylim = [0, 2.2e9], label = "Xv noise run B-SD", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
 plot!(tProcess,result_classic[1], label = "JEKF-Classic",color=:purple , lw=lws)
-plot!(tProcess,result_santo[1], label = "JEKF-Classic",color=:blue  , lw=lws)
-plot!(tProcess,result_KPH2[1], label = "JEKF-Classic",color=:green  , lw=lws)
-plot!(sol2.t,sol2[1,:],color=:red ,  ls=:dot, label = "Ground truth", lw=lws)
+plot!(tProcess,result_santo[1], label = "JEKF-SANTO",color=:blue  , lw=lws)
+plot!(tProcess,result_KPH2[1], label = "JEKF-KPH2",color=:green  , lw=lws)
+plot!(sol2.t,sol2[1,:],color=:red ,  ls=:dot, label = "Ground truth run B-SD", lw=lws)
 plot!(legend=:outertopright)
 annotate!(15, 2e9, text("A", :left, 10, 17))
 
-plot2=hline([9.21e-9] ,color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
+plot2=hline([9.21e-9] ,color=:red , ls=:dot, label = "Ground truth run B-SD" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
 plot!(tProcess,result_classic[8], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[8], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[8], label = "JEKF-KPH2",color=:green , lw=lws )
 plot!(legend=:outertopright)
 annotate!(15, 8e-9, text("B", :left, 10, 17))
 
-plot3=plot(sol2.t,sol2[7,:], color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
+plot3=plot(sol2.t,sol2[7,:], color=:red , ls=:dot, label = "Ground truth run B-SD" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
 plot!(tProcess,result_classic[7], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[7], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[7], label = "JEKF-KPH2",color=:green , lw=lws )
-plot!(legend=:topleft)
+plot!(legend=:outertopright)
 annotate!(15, 500, text("C", :left, 10, 17))
 
 pp=plot(plot1,plot2,plot3, layout=(3,1),size = (900,800))
@@ -829,27 +829,27 @@ H = [1 0 0 0 0 0 0 1]
 result_KPH2=EKF(R2,p_Q,ic,H,online_Xv_noise_7_5min_Htiter,process_model_and_MRDE_PU!)
 
 lws=3.5
-gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=13);
-plot1=plot(tProcess_total,online_Xv_noise_7_5min_Htiter,color="lightblue", ylim = [0, 2.2e9], label = "Xv online noise", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
+gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+plot1=plot(tProcess_total,online_Xv_noise_7_5min_Htiter,color="lightblue", ylim = [0, 2.2e9], label = "Xv noise run B-SD", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
 plot!(tProcess,result_classic[1], label = "JEKF-Classic",color=:purple , lw=lws)
-plot!(tProcess,result_santo[1], label = "JEKF-Classic",color=:blue  , lw=lws)
-plot!(tProcess,result_KPH2[1], label = "JEKF-Classic",color=:green  , lw=lws)
-plot!(sol2.t,sol2[1,:],color=:red ,  ls=:dot, label = "Ground truth", lw=lws)
+plot!(tProcess,result_santo[1], label = "JEKF-SANTO",color=:blue  , lw=lws)
+plot!(tProcess,result_KPH2[1], label = "JEKF-KPH2",color=:green  , lw=lws)
+plot!(sol2.t,sol2[1,:],color=:red ,  ls=:dot, label = "Ground truth run B-SD", lw=lws)
 plot!(legend=:outertopright)
 annotate!(15, 2e9, text("A", :left, 10, 17))
 
-plot2=hline([9.21e-9] ,color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
+plot2=hline([9.21e-9] ,color=:red , ls=:dot, label = "Ground truth run B-SD" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
 plot!(tProcess,result_classic[8], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[8], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[8], label = "JEKF-KPH2",color=:green , lw=lws )
 plot!(legend=:outertopright)
 annotate!(15, 8e-9, text("B", :left, 10, 17))
 
-plot3=plot(sol2.t,sol2[7,:], color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
+plot3=plot(sol2.t,sol2[7,:], color=:red , ls=:dot, label = "Ground truth run B-SD" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
 plot!(tProcess,result_classic[7], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[7], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[7], label = "JEKF-KPH2",color=:green , lw=lws )
-plot!(legend=:topleft)
+plot!(legend=:outertopright)
 annotate!(15, 500, text("C", :left, 10, 17))
 
 pp=plot(plot1,plot2,plot3, layout=(3,1),size = (900,800))
@@ -921,27 +921,27 @@ H = [1 0 0 0 0 0 0 1]
 result_KPH2=EKF(R2,p_Q,ic,H,online_Xv_noise_7_5min_Ltiter,process_model_and_MRDE_PC!)
 
 lws=3.5
-gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=13);
-plot1=plot(tProcess_total,online_Xv_noise_7_5min_Ltiter,color="lightgreen", ylim = [0, 2.2e9], label = "Xv online noise", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
+gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+plot1=plot(tProcess_total,online_Xv_noise_7_5min_Ltiter,color="lightgreen", ylim = [0, 2.2e9], label = "Xv noise run C-SD", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
 plot!(tProcess,result_classic[1], label = "JEKF-Classic",color=:purple , lw=lws)
-plot!(tProcess,result_santo[1], label = "JEKF-Classic",color=:blue  , lw=lws)
-plot!(tProcess,result_KPH2[1], label = "JEKF-Classic",color=:green  , lw=lws)
-plot!(sol3.t,sol3[1,:],color=:red ,  ls=:dot, label = "Ground truth", lw=lws)
+plot!(tProcess,result_santo[1], label = "JEKF-SANTO",color=:blue  , lw=lws)
+plot!(tProcess,result_KPH2[1], label = "JEKF-KPH2",color=:green  , lw=lws)
+plot!(sol3.t,sol3[1,:],color=:red ,  ls=:dot, label = "Ground truth run C-SD", lw=lws)
 plot!(legend=:outertopright)
 annotate!(15, 2e9, text("A", :left, 10, 17))
 
-plot2=hline([4.21e-9] ,color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
+plot2=hline([4.21e-9] ,color=:red , ls=:dot, label = "Ground truth run C-SD" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
 plot!(tProcess,result_classic[8], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[8], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[8], label = "JEKF-KPH2",color=:green , lw=lws )
 plot!(legend=:outertopright)
 annotate!(15, 8e-9, text("B", :left, 10, 17))
 
-plot3=plot(sol3.t,sol3[7,:], color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
+plot3=plot(sol3.t,sol3[7,:], color=:red , ls=:dot, label = "Ground truth run C-SD" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
 plot!(tProcess,result_classic[7], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[7], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[7], label = "JEKF-KPH2",color=:green , lw=lws )
-plot!(legend=:topleft)
+plot!(legend=:outertopright)
 annotate!(15, 400, text("C", :left, 10, 17))
 
 pp=plot(plot1,plot2,plot3, layout=(3,1),size = (900,800))
@@ -997,27 +997,27 @@ H = [1 0 0 0 0 0 0 1]
 result_KPH2=EKF(R2,p_Q,ic,H,online_Xv_noise_7_5min_Ltiter,process_model_and_MRDE_PC!)
 
 lws=3.5
-gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=13);
-plot1=plot(tProcess_total,online_Xv_noise_7_5min_Ltiter,color="lightgreen", ylim = [0, 2.2e9], label = "Xv online noise", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
+gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+plot1=plot(tProcess_total,online_Xv_noise_7_5min_Ltiter,color="lightgreen", ylim = [0, 2.2e9], label = "Xv noise run C-SD", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
 plot!(tProcess,result_classic[1], label = "JEKF-Classic",color=:purple , lw=lws)
-plot!(tProcess,result_santo[1], label = "JEKF-Classic",color=:blue  , lw=lws)
-plot!(tProcess,result_KPH2[1], label = "JEKF-Classic",color=:green  , lw=lws)
-plot!(sol3.t,sol3[1,:],color=:red ,  ls=:dot, label = "Ground truth", lw=lws)
+plot!(tProcess,result_santo[1], label = "JEKF-SANTO",color=:blue  , lw=lws)
+plot!(tProcess,result_KPH2[1], label = "JEKF-KPH2",color=:green  , lw=lws)
+plot!(sol3.t,sol3[1,:],color=:red ,  ls=:dot, label = "Ground truth run C-SD", lw=lws)
 plot!(legend=:outertopright)
 annotate!(15, 2e9, text("A", :left, 10, 17))
 
-plot2=hline([4.21e-9] ,color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
+plot2=hline([4.21e-9] ,color=:red , ls=:dot, label = "Ground truth run C-SD" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
 plot!(tProcess,result_classic[8], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[8], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[8], label = "JEKF-KPH2",color=:green , lw=lws )
 plot!(legend=:outertopright)
 annotate!(15, 8e-9, text("B", :left, 10, 17))
 
-plot3=plot(sol3.t,sol3[7,:], color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
+plot3=plot(sol3.t,sol3[7,:], color=:red , ls=:dot, label = "Ground truth run C-SD" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
 plot!(tProcess,result_classic[7], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[7], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[7], label = "JEKF-KPH2",color=:green , lw=lws )
-plot!(legend=:topleft)
+plot!(legend=:outertopright)
 annotate!(15, 500, text("C", :left, 10, 17))
 
 pp=plot(plot1,plot2,plot3, layout=(3,1),size = (900,800))
@@ -1072,27 +1072,27 @@ H = [1 0 0 0 0 0 0 1]
 result_KPH2=EKF(R2,p_Q,ic,H,online_Xv_noise_7_5min_Ltiter,process_model_and_MRDE_PU!)
 
 lws=3.5
-gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=13);
-plot1=plot(tProcess_total,online_Xv_noise_7_5min_Ltiter,color="lightgreen", ylim = [0, 2.2e9], label = "Xv online noise", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
+gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+plot1=plot(tProcess_total,online_Xv_noise_7_5min_Ltiter,color="lightgreen", ylim = [0, 2.2e9], label = "Xv noise run C-SD", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
 plot!(tProcess,result_classic[1], label = "JEKF-Classic",color=:purple , lw=lws)
-plot!(tProcess,result_santo[1], label = "JEKF-Classic",color=:blue  , lw=lws)
-plot!(tProcess,result_KPH2[1], label = "JEKF-Classic",color=:green  , lw=lws)
-plot!(sol3.t,sol3[1,:],color=:red ,  ls=:dot, label = "Ground truth", lw=lws)
+plot!(tProcess,result_santo[1], label = "JEKF-SANTO",color=:blue  , lw=lws)
+plot!(tProcess,result_KPH2[1], label = "JEKF-KPH2",color=:green  , lw=lws)
+plot!(sol3.t,sol3[1,:],color=:red ,  ls=:dot, label = "Ground truth run C-SD", lw=lws)
 plot!(legend=:outertopright)
 annotate!(15, 2e9, text("A", :left, 10, 17))
 
-plot2=hline([4.21e-9] ,color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
+plot2=hline([4.21e-9] ,color=:red , ls=:dot, label = "Ground truth run C-SD" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
 plot!(tProcess,result_classic[8], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[8], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[8], label = "JEKF-KPH2",color=:green , lw=lws )
 plot!(legend=:outertopright)
 annotate!(15, 5e-9, text("B", :left, 10, 17))
 
-plot3=plot(sol3.t,sol3[7,:], color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
+plot3=plot(sol3.t,sol3[7,:], color=:red , ls=:dot, label = "Ground truth run C-SD" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
 plot!(tProcess,result_classic[7], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[7], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[7], label = "JEKF-KPH2",color=:green , lw=lws )
-plot!(legend=:topleft)
+plot!(legend=:outertopright)
 annotate!(15, 400, text("C", :left, 10, 17))
 
 
@@ -1148,27 +1148,27 @@ H = [1 0 0 0 0 0 0 1]
 result_KPH2=EKF(R2,p_Q,ic,H,online_Xv_noise_7_5min_Ltiter,process_model_and_MRDE_PU!)
 
 lws=3.5
-gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=13);
-plot1=plot(tProcess_total,online_Xv_noise_7_5min_Ltiter,color="lightgreen", ylim = [0, 2.2e9], label = "Xv online noise", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
+gr( xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+plot1=plot(tProcess_total,online_Xv_noise_7_5min_Ltiter,color="lightgreen", ylim = [0, 2.2e9], label = "Xv noise run C-SD", ylabel=L"Xv (Cell/L)" ,xlabel=L"time(h)" , lw=lws)
 plot!(tProcess,result_classic[1], label = "JEKF-Classic",color=:purple , lw=lws)
-plot!(tProcess,result_santo[1], label = "JEKF-Classic",color=:blue  , lw=lws)
-plot!(tProcess,result_KPH2[1], label = "JEKF-Classic",color=:green  , lw=lws)
-plot!(sol3.t,sol3[1,:],color=:red ,  ls=:dot, label = "Ground truth", lw=lws)
+plot!(tProcess,result_santo[1], label = "JEKF-SANTO",color=:blue  , lw=lws)
+plot!(tProcess,result_KPH2[1], label = "JEKF-KPH2",color=:green  , lw=lws)
+plot!(sol3.t,sol3[1,:],color=:red ,  ls=:dot, label = "Ground truth run C-SD", lw=lws)
 plot!(legend=:outertopright)
 annotate!(15, 2e9, text("A", :left, 10, 17))
 
-plot2=hline([4.21e-9] ,color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
+plot2=hline([4.21e-9] ,color=:red , ls=:dot, label = "Ground truth run C-SD" ,xlabel=L"time(h)", ylabel=L"QmAb (mg/(cell~h))", lw=lws)
 plot!(tProcess,result_classic[8], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[8], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[8], label = "JEKF-KPH2",color=:green , lw=lws )
 plot!(legend=:outertopright)
 annotate!(15, 8e-9, text("B", :left, 10, 17))
 
-plot3=plot(sol3.t,sol3[7,:], color=:red , ls=:dot, label = "Ground truth" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
+plot3=plot(sol3.t,sol3[7,:], color=:red , ls=:dot, label = "Ground truth run C-SD" ,xlabel=L"time(h)", ylabel=L"mAb (mg/L)", lw=lws)
 plot!(tProcess,result_classic[7], label = "JEKF-Classic",color=:purple, lw=lws )
 plot!(tProcess,result_santo[7], label = "JEKF-SANTO",color=:blue , lw=lws )
 plot!(tProcess,result_KPH2[7], label = "JEKF-KPH2",color=:green , lw=lws )
-plot!(legend=:topleft)
+plot!(legend=:outertopright)
 annotate!(15, 500, text("C", :left, 10, 17))
 
 pp=plot(plot1,plot2,plot3, layout=(3,1),size = (900,800))

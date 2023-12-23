@@ -6,7 +6,9 @@
 
 
 %Initialization
+
 clear; close all; clc;
+
 sympref('AbbreviateOutput', false);
 %Variable and parameter definition
 %Symbols for symbolic math calculations
@@ -68,12 +70,12 @@ end
 % Variance: 20882493333.333332
 % Mean of all variances: 6349906666.666667 ≈ 0.006e12
 
-% Therefore, the measurement noise variance R was considered = 0.006e12
+% Based on 0.006e12 (initial R) and Innovation magnitude bound test the final R is 0.00002e12.
+% What is the percentege of innovation errors that lie within the ±2sqrt(Sk)? 0.9524301964839711
 
 % JEKF with SANTO = 000
 % JEKF with SANTO = 100
 % JEKF with KPH2  = 200
-
 
 Keys=[000,100,200];
 Val=["JEKF-Classic","JEKF-SANTO","JEKF-KPH2"]; 
@@ -81,7 +83,6 @@ methods = containers.Map(Keys,Val);
 
 
 for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
-
     offline_bioreactor_dt1=[
     0.3595e6                    32.1954   5.03      0.111019  0.33       0;  %begin of bioreactor 1 dataset (offline) - bioreactor_1_dataset_Data_Alinabioreactor 3L_metabolites_cells count_viral titer.xlsx
     0.709e6                     30.4191   4.7       3.77463   0.91       0;
@@ -95,16 +96,13 @@ for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
 
     datasetOnline = csvread("bioreactor_2_dataset_online_hspb.csv"); % bioreactor 2 dataset (online) 
 
-
     phase ="after_transfection";
-
 
     if phase=="before_transfection";
         offline_bioreactor=offline_bioreactor_dt1(1:3,:); %OFFLINE dataset 
     else
         offline_bioreactor=offline_bioreactor_dt1(4:9,:); %OFFLINE dataset 
     end
-
 
     % run 8 = bioreactor 1 dataset (offline)
     % run 9 = bioreactor 2 dataset (online)
@@ -127,42 +125,64 @@ for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
          param_only=[0.006 1.01e-7 2.12e-8 2.58571e-8 1.47905e-9 0.0014591 65.6];
 
 
-         
+        % measurement noise covariance matrix
+        R=   130e5;%ok       
+        Q_xv=50e5;
+        
+%          R=   8e6;%ok       
+%          Q_xv=50e6;
+
+%         R=   1000e4;%ok       
+%         Q_xv=500e4;
+        
         if approach == 000 %JEKF-Classic
 
                 H = [1     0     0     0     0     0     0     0    0     0     0     0     0]; % measurement matrix
                 initP = diag([0.0,0.0,0.0,0.0,0.0,0.0,                          1.77e-9, 4.76e-5, 1.05e-5, 35.59e-7, 6.71e-10, 8.71e-8,42000]); % initial process co-varince   
-                Q = diag([0.000006, 0.0006, 0.0006, 0.0006, 0.0006, 0.0006,     1.77e-7, .21e-16, 7.86e-18, 35.59e-7, 0.11e-8, 0.71e-8,0.31]) ;% process noise covariance %matrix
+                Q = diag([Q_xv, 0.0006, 0.0006, 0.0006, 0.0006, 0.0006,     1.77e-7, .21e-16, 7.86e-18, 13.59e-7, 0.11e-8, 0.71e-8,0.31]) ;% process noise covariance %matrix
+                k_mu_glc=[];
+                k_mu_lac=[];
+                k_mu_raav=[];
                              
         elseif approach == 100 %JEKF-SANTO
 
                 H = [1     0     0     0     0     0     0     0    0     0     0     0     0]; % measurement matrix
                 initP = diag([0.0,0.0,0.0,0.0,0.0,0.0,                          1.77e-9, 4.76e-5, 1.05e-5, 35.59e-7, 6.71e-10, 8.71e-8,42000]); % initial process co-varince 
                 
-                initP(8,1) =0.0000391;%0.0000411;
-                initP(10,1)=0.00003405;
-                initP(13,1)=40000;  
-                Q = diag([0.000006, 0.0006, 0.0006, 0.0006, 0.0006, 0.0006,     1.77e-7, .21e-16, 7.86e-18, 35.59e-7, 0.11e-8, 0.71e-8,0.31]) ;% process noise covariance %matrix
+                mu_glc=0.000006751;
+                initP(8,1) =mu_glc;%0.0000411;
+                initP(1,8) =mu_glc;%0.0000411;
+
+                mu_lac=0.0000072505;
+                initP(10,1)=mu_lac;
+                initP(1,10)=mu_lac;
                 
+                mu_rAAV=9500.3625;
+                initP(13,1)=mu_rAAV;
+                initP(1,13)=mu_rAAV;
+                
+                Q = diag([Q_xv, 0.0006, 0.0006, 0.0006, 0.0006, 0.0006,     1.77e-7, .21e-16, 7.86e-18, 13.59e-7, 0.11e-8, 0.71e-8,0.31]) ;% process noise covariance %matrix
+
+                k_mu_glc=[];
+                k_mu_lac=[];
+                k_mu_raav=[];
         else  %JEKF-KPH2
             
                 H2 = [1     0     0     0     0     0     0     1     1     1     1     1     1]; % measurement matrix
                 %new good for new IC 
-                initP = diag([0.0,0.0,0.0,0.0,0.0,0.0,                          1.77e-9, 4.76e-5, 1.05e-5, 35.59e-7, 6.71e-10, 8.71e-8,42000]); % initial process co-varince 
-                Q = diag([0.000006, 0.0006, 0.0006, 0.0006, 0.0006, 0.0006,     1.77e-7, .21e-16, 7.86e-18, 35.59e-7, 0.11e-8, 0.71e-8,0.31]) ;% process noise covariance %matrix
+                initP = diag([0.0,0.0,0.0,0.0,0.0,0.0,                          1.77e-9, 10.66e-6, 1.05e-5, 550.59e-8, 6.71e-10, 8.71e-8,10000]); % initial process co-varince 
                 
-                H=H2;              
+                Q = diag([Q_xv, 0.0006, 0.0006, 0.0006, 0.0006, 0.0006,         1.77e-7, .21e-16, 7.86e-18, 13.59e-7, 0.11e-8, 0.71e-8,  0.31]) ;% process noise covariance %matrix
+                
+                H=H2;  
+                
+                k_mu_glc=[];
+                k_mu_lac=[];
+                k_mu_raav=[];
         end
-        
-        
-        
-        
-        
-
+         
         init = [initX; initP(:)]; % combined initial value vector for the odesolver
 
-        % measurement noise covariance matrix
-        R=0.006e12;
 
         % full model with ODE for states variables and for parameters
         dS=sym([uxv*Xv;-uglc*Xv;-ugln*Xv;ulac*Xv;uamm*Xv+kdeg*Gln;uaav*Xv;0;0;0;0;0;0;0]);
@@ -181,14 +201,13 @@ for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
         %Assemble all differential equations into a vector of 12 elements %(3x state, 9x P)
         
         OdeSys = matlabFunction([dS(:);dP(:)],'Vars',{t,[Xv; Glc; Gln; Lac; Amm; AAV; uxv; uglc; ugln; ulac; uamm; kdeg; uaav; P(:)]});
-
-        
         
         % Simulate the process from one measurement time to the next:
         states_updated_EKF = zeros(0,13); %store filtered states in these variables
         SimState = zeros(0,13);
         P_state =[];
         SimTime = [];
+
 
         tspanODEonly=[];
         if run==8 % run 8 = bioreactor 1 dataset (offline)
@@ -220,10 +239,25 @@ for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
             tspanODEonly=[t0 timeE(end)];     
         end
 
-        %%%%%%%%%%%%%%%%        %%%%%%%%%%%%%%%%
-        %%%%%%%%%%%%%%%%  JEKF  %%%%%%%%%%%%%%%%
-        %%%%%%%%%%%%%%%%        %%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  JEKF  %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+        
+        innovation_error=[];
+        NIS=[];
+        Sk=[];
+        
+        updated_stde_P_xv=[];
+        updated_stde_P_GLC=[];
+        updated_stde_P_LAC=[];
+        updated_stde_P_rAAV=[];
+        updated_stde_P_muGLC=[];
+        updated_stde_P_muLAC=[];
+        updated_stde_P_murAAV=[];
+
+              
+        
         for i = 1:numel(timeE)
             tspan = [t0 timeE(i)];
             [T,state] = ode45(OdeSys, tspan, init); % Solve the system of ODE from t-1 to t (simulate / solve model)
@@ -235,8 +269,10 @@ for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
                 MS = obs_data(1,i+1);               % measured state from online dataset      
             end
             P = reshape(state(end,14:end),13,13);   % process error covariance matrix
-            K = P*H'/(H*P*H'+ R);                   % kalman gain matrix - Equation 13 in paper1
-            FS = PS + K * (MS-PS(1));               % filtered state - Equation 5 and Equation 14 in paper1
+            S=H*P*H'+ R;
+            K = P*H'/(S);                   % kalman gain matrix - Equation 13 in paper1
+            i_error=MS-PS(1);
+            FS = PS + K * (i_error);               % filtered state - Equation 5 and Equation 14 in paper1
             Pfilt = P-K*H*P;                        % filtered process error covariance matrix - Equation 6 and Equation 15(in paper 1) and Equation 18 (in paper2) 
             init = [FS; Pfilt(:)];                  % new initial condition to be used to solve the system of ODE
             t0 = timeE(i);                          % new starting time for next iteration
@@ -247,24 +283,52 @@ for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
             state(end,1:13) = NaN;
             SimState = [SimState; state(:,1:13)];
             SimTime = [SimTime; T];
+
+            
+            stde_k=sqrt(diag(P));
+            
+%             updated_stde_P_xv=    [updated_stde_P_xv;stde_k(1)/sqrt(length(updated_stde_P_xv))];
+%             updated_stde_P_GLC=   [updated_stde_P_GLC;stde_k(2)/sqrt(length(updated_stde_P_GLC))];
+%             updated_stde_P_LAC=   [updated_stde_P_LAC;stde_k(4)/sqrt(length(updated_stde_P_LAC))];
+%             updated_stde_P_rAAV=  [updated_stde_P_rAAV;stde_k(6)/sqrt(length(updated_stde_P_rAAV))];
+%             updated_stde_P_muGLC= [updated_stde_P_muGLC;stde_k(8)/sqrt(length(updated_stde_P_muGLC))];
+%             updated_stde_P_muLAC= [updated_stde_P_muLAC;stde_k(10)/sqrt(length(updated_stde_P_muLAC))];
+%             updated_stde_P_murAAV=[updated_stde_P_murAAV;stde_k(13)/sqrt(length(updated_stde_P_murAAV))];
+%             
+            updated_stde_P_xv=    [updated_stde_P_xv;stde_k(1)];
+            updated_stde_P_GLC=   [updated_stde_P_GLC;stde_k(2)];
+            updated_stde_P_LAC=   [updated_stde_P_LAC;stde_k(4)];
+            updated_stde_P_rAAV=  [updated_stde_P_rAAV;stde_k(6)];
+            updated_stde_P_muGLC= [updated_stde_P_muGLC;stde_k(8)];
+            updated_stde_P_muLAC= [updated_stde_P_muLAC;stde_k(10)];
+            updated_stde_P_murAAV=[updated_stde_P_murAAV;stde_k(13)];
+
+            
+            
+%       append!(updated_stde_P_xv, sqrt.(abs.(diag(Pfilt)))[1]/sqrt(length(updated_stde_P_xv))) 
+%       append!(updated_stde_P_QmAb, sqrt.(abs.(diag(Pfilt)))[8]/sqrt(length(updated_stde_P_QmAb)))
+%       append!(updated_stde_P_mAb, sqrt.(abs.(diag(Pfilt)))[7]/sqrt(length(updated_stde_P_mAb)))
+
+            
+            k_mu_glc=[k_mu_glc;K(8)];
+            k_mu_lac=[k_mu_lac;K(10)];
+            k_mu_raav=[k_mu_raav;K(13)];
+            innovation_error=[innovation_error;i_error];
+            NIS=[NIS;i_error*(1/S)*i_error];
+            Sk=[Sk;S];
+            
         end
 
-
+        
 
          OdeSysOnly = subs(OdeSysOnly, [uxv uglc ugln ulac uamm kdeg uaav], param_only);
          OdeSysOnly = matlabFunction([OdeSysOnly(:)],'Vars',{t,[Xv; Glc; Gln; Lac; Amm; AAV]});
          [T,sol]=ode45(OdeSysOnly, tspanODEonly, initX(1:6));
 
 
-
-
-
-        %%%%%%%%%%%%%%%%        %%%%%%%%%%%%%%%%
-        %%%%%%%%%%%%%%%%  PLOTS %%%%%%%%%%%%%%%%
-        %%%%%%%%%%%%%%%%        %%%%%%%%%%%%%%%%
-
-
-
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  PLOTS %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%        %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
         writematrix(timeE,"results/timeEstimations.csv")   
 
@@ -291,26 +355,60 @@ for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
     
                 elseif j==2
                     scatter([4679-3;6144-3]/60,[22.00943658;17.707466],'filled'); %plot AVV offline bioreactor 2 dataset hspb  
-                    message = sprintf('RMSE GLC of Approach %s: %f',methods(approach),sqrt(mean(([states_updated_EKF(1424,j),states_updated_EKF(2889,j)] - [22.00943658,17.707466]).^2)) );
+                    estimation = [states_updated_EKF(1424,j),states_updated_EKF(2889,j)];
+                    ground_truth = [22.00943658,17.707466];
+                    mspe=mean(((ground_truth-estimation)./ground_truth).^2);
+                    rmspe=sqrt(mspe)*100;
+%                      message = sprintf('RMSE GLC of Approach %s: %f',methods(approach),sqrt(mean(([states_updated_EKF(1424,j),states_updated_EKF(2889,j)] - [22.00943658,17.707466]).^2)) );
+%                     disp(message)
+                     message = sprintf('RMSPE GLC of Approach %s: %f',methods(approach),rmspe );
                     disp(message)
 
                     writematrix(states_updated_EKF(:,j),"results/"+methods(approach)+"_GLC.csv")
 
                 elseif j==4
                     scatter([4679-3;6144-3]/60,[9.10352484;11.54593394],'filled'); %plot AVV offline bioreactor 2 dataset hspb   
-                    message = sprintf('RMSE LAC of Approach %s: %f',methods(approach),sqrt(mean(([states_updated_EKF(1424,j),states_updated_EKF(2889,j)] - [9.10352484,11.54593394]).^2)) );
+                    estimation = [states_updated_EKF(1424,j),states_updated_EKF(2889,j)];
+                    ground_truth = [9.10352484,11.54593394];
+                    mspe=mean(((ground_truth-estimation)./ground_truth).^2);
+                    rmspe=sqrt(mspe)*100;
+%                      message = sprintf('RMSE LAC of Approach %s: %f',methods(approach),sqrt(mean(([states_updated_EKF(1424,j),states_updated_EKF(2889,j)] - [9.10352484,11.54593394]).^2)) );
+%                      disp(message)
+                     message = sprintf('RMSPE LAC of Approach %s: %f',methods(approach),rmspe );
                     disp(message)
 
                     writematrix(states_updated_EKF(:,j),"results/"+methods(approach)+"_LAC.csv")
 
                 elseif j==6          
                     timeDO=[3252-3;4679-3;6144-3]/60;
-                    scatter(timeDO,[0;3190000000;7010000000],'filled'); %plot AVV offline bioreactor 2 dataset hspb  
-                    message = sprintf('RMSE rAAV of Approach %s: %f',methods(approach),sqrt(mean(([states_updated_EKF(1424,j),states_updated_EKF(2889,j)] - [3190000000,7010000000]).^2)) );
+                    scatter(timeDO,[0;3190000000;7010000000],'filled'); %plot AVV offline bioreactor 2 dataset hspb 
+                    estimation = [states_updated_EKF(1424,j),states_updated_EKF(2889,j)];
+                    ground_truth = [3190000000,7010000000];
+                    mspe=mean(((ground_truth-estimation)./ground_truth).^2);
+                    rmspe=sqrt(mspe)*100;
+%                      message = sprintf('RMSE rAAV of Approach %s: %f',methods(approach),sqrt(mean(([states_updated_EKF(1424,j),states_updated_EKF(2889,j)] - [3190000000,7010000000]).^2)) );
+%                     disp(message)
+                     message = sprintf('RMSPE rAAV of Approach %s: %f',methods(approach),rmspe );
                     disp(message)
 
                     writematrix(states_updated_EKF(:,j),"results/"+methods(approach)+"_rAAV.csv")
                 end 
+                
+                
+                
+                
+
+% 
+
+
+
+                
+                
+                
+                
+                
+                
+                
                 
             end           
 
@@ -362,7 +460,40 @@ for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
     writematrix(states_updated_EKF(:,10),"results/"+methods(approach)+"_muLAC.csv")
     writematrix(states_updated_EKF(:,13),"results/"+methods(approach)+"_muAAV.csv")
 
+    writematrix(k_mu_glc,"results/"+methods(approach)+"_k_mu_glc.csv")
+    writematrix(k_mu_lac,"results/"+methods(approach)+"_k_mu_lac.csv")
+    writematrix(k_mu_raav,"results/"+methods(approach)+"_k_mu_raav.csv")
 
- end  
+    writematrix(innovation_error,"results/"+methods(approach)+"_innovation_error.csv")
+    writematrix(NIS,"results/"+methods(approach)+"_NIS.csv")
+    writematrix(Sk,"results/"+methods(approach)+"_Sk.csv")
+    
+    writematrix(innovation_error,"results/"+methods(approach)+"_innovation_error.csv")
+    writematrix(NIS,"results/"+methods(approach)+"_NIS.csv")
+    writematrix(Sk,"results/"+methods(approach)+"_Sk.csv")
+    
+    writematrix(updated_stde_P_xv,"results/"+methods(approach)+"_updated_stde_P_xv.csv")
+    writematrix(updated_stde_P_GLC,"results/"+methods(approach)+"_updated_stde_P_GLC.csv")
+    writematrix(updated_stde_P_LAC,"results/"+methods(approach)+"_updated_stde_P_LAC.csv")
+    writematrix(updated_stde_P_rAAV,"results/"+methods(approach)+"_updated_stde_P_rAAV.csv")
+    writematrix(updated_stde_P_muGLC,"results/"+methods(approach)+"_updated_stde_P_muGLC.csv")
+    writematrix(updated_stde_P_muLAC,"results/"+methods(approach)+"_updated_stde_P_muLAC.csv")
+    writematrix(updated_stde_P_murAAV,"results/"+methods(approach)+"_updated_stde_P_murAAV.csv")
+        
+    
+    
+%         updated_stde_P_xv=[];
+%         updated_stde_P_GLC=[];
+%         updated_stde_P_LAC=[];
+%         updated_stde_P_rAAV=[];
+%         updated_stde_P_muGLC=[];
+%         updated_stde_P_muLAC=[];
+%         updated_stde_P_murAAV=[];
+    
+    
+end  
+ 
+
+
 
 

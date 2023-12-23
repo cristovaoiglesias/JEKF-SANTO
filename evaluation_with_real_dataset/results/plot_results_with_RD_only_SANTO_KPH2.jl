@@ -22,6 +22,21 @@ SANTO_rAAV=CSV.read(results_path*"/JEKF-SANTO_rAAV.csv",DataFrame;header=false )
 SANTO_muGLC=CSV.read(results_path*"/JEKF-SANTO_muGLC.csv",DataFrame;header=false )
 SANTO_muLAC=CSV.read(results_path*"/JEKF-SANTO_muLAC.csv",DataFrame;header=false )
 SANTO_muAAV=CSV.read(results_path*"/JEKF-SANTO_muAAV.csv",DataFrame;header=false )
+SANTO_k_muGLC=CSV.read(results_path*"/JEKF-SANTO_k_mu_glc.csv",DataFrame;header=false )
+SANTO_k_muLAC=CSV.read(results_path*"/JEKF-SANTO_k_mu_lac.csv",DataFrame;header=false )
+SANTO_k_muAAV=CSV.read(results_path*"/JEKF-SANTO_k_mu_raav.csv",DataFrame;header=false )
+
+SANTO_Sk=CSV.read(results_path*"/JEKF-SANTO_Sk.csv",DataFrame;header=false )
+SANTO_innovation_error=CSV.read(results_path*"/JEKF-SANTO_innovation_error.csv",DataFrame;header=false )
+SANTO_NIS=CSV.read(results_path*"/JEKF-SANTO_NIS.csv",DataFrame;header=false )
+
+SANTO_SE_Xv=CSV.read(results_path*"/JEKF-SANTO_updated_stde_P_xv.csv",DataFrame;header=false )
+SANTO_SE_GLC=CSV.read(results_path*"/JEKF-SANTO_updated_stde_P_GLC.csv",DataFrame;header=false )
+SANTO_SE_LAC=CSV.read(results_path*"/JEKF-SANTO_updated_stde_P_LAC.csv",DataFrame;header=false )
+SANTO_SE_rAAV=CSV.read(results_path*"/JEKF-SANTO_updated_stde_P_rAAV.csv",DataFrame;header=false )
+SANTO_SE_muGLC=CSV.read(results_path*"/JEKF-SANTO_updated_stde_P_muGLC.csv",DataFrame;header=false )
+SANTO_SE_muLAC=CSV.read(results_path*"/JEKF-SANTO_updated_stde_P_muLAC.csv",DataFrame;header=false )
+SANTO_SE_murAAV=CSV.read(results_path*"/JEKF-SANTO_updated_stde_P_murAAV.csv",DataFrame;header=false )
 
 Classic_Xv=CSV.read(results_path*"/JEKF-Classic_Xv.csv",DataFrame;header=false )
 Classic_GLC=CSV.read(results_path*"/JEKF-Classic_GLC.csv",DataFrame;header=false )
@@ -30,6 +45,21 @@ Classic_rAAV=CSV.read(results_path*"/JEKF-Classic_rAAV.csv",DataFrame;header=fal
 Classic_muGLC=CSV.read(results_path*"/JEKF-Classic_muGLC.csv",DataFrame;header=false )
 Classic_muLAC=CSV.read(results_path*"/JEKF-Classic_muLAC.csv",DataFrame;header=false )
 Classic_muAAV=CSV.read(results_path*"/JEKF-Classic_muAAV.csv",DataFrame;header=false )
+Classic_k_muGLC=CSV.read(results_path*"/JEKF-Classic_k_mu_glc.csv",DataFrame;header=false )
+Classic_k_muLAC=CSV.read(results_path*"/JEKF-Classic_k_mu_lac.csv",DataFrame;header=false )
+Classic_k_muAAV=CSV.read(results_path*"/JEKF-Classic_k_mu_raav.csv",DataFrame;header=false )
+
+Classic_Sk=CSV.read(results_path*"/JEKF-Classic_Sk.csv",DataFrame;header=false )
+Classic_innovation_error=CSV.read(results_path*"/JEKF-Classic_innovation_error.csv",DataFrame;header=false )
+Classic_NIS=CSV.read(results_path*"/JEKF-Classic_NIS.csv",DataFrame;header=false )
+
+Classic_SE_Xv=CSV.read(results_path*"/JEKF-Classic_updated_stde_P_xv.csv",DataFrame;header=false )
+Classic_SE_GLC=CSV.read(results_path*"/JEKF-Classic_updated_stde_P_GLC.csv",DataFrame;header=false )
+Classic_SE_LAC=CSV.read(results_path*"/JEKF-Classic_updated_stde_P_LAC.csv",DataFrame;header=false )
+Classic_SE_rAAV=CSV.read(results_path*"/JEKF-Classic_updated_stde_P_rAAV.csv",DataFrame;header=false )
+Classic_SE_muGLC=CSV.read(results_path*"/JEKF-Classic_updated_stde_P_muGLC.csv",DataFrame;header=false )
+Classic_SE_muLAC=CSV.read(results_path*"/JEKF-Classic_updated_stde_P_muLAC.csv",DataFrame;header=false )
+Classic_SE_murAAV=CSV.read(results_path*"/JEKF-Classic_updated_stde_P_murAAV.csv",DataFrame;header=false )
 
 KPH2_Xv=CSV.read(results_path*"/JEKF-KPH2_Xv.csv",DataFrame;header=false )
 KPH2_GLC=CSV.read(results_path*"/JEKF-KPH2_GLC.csv",DataFrame;header=false )
@@ -38,14 +68,257 @@ KPH2_rAAV=CSV.read(results_path*"/JEKF-KPH2_rAAV.csv",DataFrame;header=false )
 KPH2_muGLC=CSV.read(results_path*"/JEKF-KPH2_muGLC.csv",DataFrame;header=false )
 KPH2_muLAC=CSV.read(results_path*"/JEKF-KPH2_muLAC.csv",DataFrame;header=false )
 KPH2_muAAV=CSV.read(results_path*"/JEKF-KPH2_muAAV.csv",DataFrame;header=false )
+KPH2_k_muGLC=CSV.read(results_path*"/JEKF-KPH2_k_mu_glc.csv",DataFrame;header=false )
+KPH2_k_muLAC=CSV.read(results_path*"/JEKF-KPH2_k_mu_lac.csv",DataFrame;header=false )
+KPH2_k_muAAV=CSV.read(results_path*"/JEKF-KPH2_k_mu_raav.csv",DataFrame;header=false )
+
+KPH2_Sk=CSV.read(results_path*"/JEKF-KPH2_Sk.csv",DataFrame;header=false )
+KPH2_innovation_error=CSV.read(results_path*"/JEKF-KPH2_innovation_error.csv",DataFrame;header=false )
+KPH2_NIS=CSV.read(results_path*"/JEKF-KPH2_NIS.csv",DataFrame;header=false )
+
+KPH2_SE_Xv=CSV.read(results_path*"/JEKF-KPH2_updated_stde_P_xv.csv",DataFrame;header=false )
+KPH2_SE_GLC=CSV.read(results_path*"/JEKF-KPH2_updated_stde_P_GLC.csv",DataFrame;header=false )
+KPH2_SE_LAC=CSV.read(results_path*"/JEKF-KPH2_updated_stde_P_LAC.csv",DataFrame;header=false )
+KPH2_SE_rAAV=CSV.read(results_path*"/JEKF-KPH2_updated_stde_P_rAAV.csv",DataFrame;header=false )
+KPH2_SE_muGLC=CSV.read(results_path*"/JEKF-KPH2_updated_stde_P_muGLC.csv",DataFrame;header=false )
+KPH2_SE_muLAC=CSV.read(results_path*"/JEKF-KPH2_updated_stde_P_muLAC.csv",DataFrame;header=false )
+KPH2_SE_murAAV=CSV.read(results_path*"/JEKF-KPH2_updated_stde_P_murAAV.csv",DataFrame;header=false )
+
+
+
+
+# Checking consistency
+
+function checking_consistency(innovation_error,Sk,NIS)
+
+    innovation_error=innovation_error
+    Sk=Sk
+    NIS=NIS
+
+    rmse= sqrt(sum(innovation_error.^2)/length(innovation_error))
+
+    mean_NIS=mean(NIS)
+
+    N=length(NIS)
+    # https://www.chisquaretable.net/
+    # https://www.itl.nist.gov/div898/handbook/eda/section3/eda3674.htm
+    r1=2752.636832539055 # cquantile(Chisq(2901-1), .975) # CI from table using N=2901 size of noise dt
+    r2=3051.1515913146504 # cquantile(Chisq(2901-1), .025)
+
+
+    println("\n====== Innovation magnitude bound test ======")
+    println("What is the percentege of innovation errors that lie within the ±2sqrt(Sk)? ", (N-(sum(-2*sqrt.(Sk).>innovation_error)+sum(innovation_error.>2*sqrt.(Sk))))/N )
+    println("RMSE(innovation_error): ",rmse)
+    println("mean(NIS): ",mean_NIS)
+    # println("What is the percentege of innovation errors lie within the ±2sqrt(Sk) ", (N-(sum(-2*sqrt.(Sk).>innovation_error)+sum(innovation_error.>2*sqrt.(Sk))))/N )
+
+    println("\n====== Normalised innovations squared Chi2 test ======")
+    println("Is N*mean(NIS) inside of 95% CI (r1 < N*mean(NIS) < r2)?", r1 < N*mean_NIS < r2)
+    println("N = ",N)
+    println("r1 = ",r1)
+    println("r2 = ",r2)
+    println("N*mean(NIS) = ",N*mean_NIS)
+
+
+
+    # println("Is N*mean(NIS) inside of 95% CI (two side)?", r1 < N*mean_NIS < r2)
+    # println("Is N*mean(NIS) < 95% CI (one side)? ", 0 < N*mean_NIS < r2one)
+
+    ppp=plot(NIS,label="NIS")
+    plot!(repeat([mean_NIS], N), label="mean(NIS) ~ 1" )
+    plot!(repeat([r1/N], N), label="r1/N" )
+    plot!(repeat([r2/N], N), label="r2/N" )
+    # plot!(repeat([r2one/N], N), label="r2one/N" )
+    display(ppp)
+
+    # # plot Innovation magnitude bound test
+    # ppp=plot(innovation_error,label="Innovation error")
+    # plot!(2*sqrt.(Sk), label="+2sqrt(Sk)" )
+    # plot!(-2*sqrt.(Sk), label="-2sqrt(Sk)" )
+    # display(ppp)
+end
+
+
+checking_consistency(Array(Classic_innovation_error),Array(Classic_Sk),Array(Classic_NIS))
+checking_consistency(Array(SANTO_innovation_error),Array(SANTO_Sk),Array(SANTO_NIS))
+checking_consistency(Array(KPH2_innovation_error),Array(KPH2_Sk),Array(KPH2_NIS))
+
+tProcess=Array(timeEstimations)'
+# plot Innovation magnitude bound test
+innovation_error=Array(Classic_innovation_error)
+Sk=Array(Classic_Sk)
+plot1=plot(tProcess,innovation_error,label="Innovation error",xlabel=L"time(h)", ylabel=L"Innovation~Error" )
+plot!(tProcess,2*sqrt.(Sk), label=L"+2\sqrt{S_k}" )
+plot!(tProcess,-2*sqrt.(Sk), label=L"-2\sqrt{S_k}" )
+plot!(legend=:outertopright)
+annotate!(85, 1.5e4, text("JEKF-Classic", :left, 10, 13))
+
+innovation_error=Array(SANTO_innovation_error)
+Sk=Array(SANTO_Sk)
+plot2=plot(tProcess,innovation_error,label="Innovation error",xlabel=L"time(h)", ylabel=L"Innovation~Error" )
+plot!(tProcess,2*sqrt.(Sk), label=L"+2\sqrt{S_k}" )
+plot!(tProcess,-2*sqrt.(Sk), label=L"-2\sqrt{S_k}" )
+plot!(legend=:outertopright)
+annotate!(85, 1.4e4, text("JEKF-SANTO", :left, 10, 13))
+
+innovation_error=Array(KPH2_innovation_error)
+Sk=Array(KPH2_Sk)
+plot3=plot(tProcess,innovation_error,label="Innovation error",xlabel=L"time(h)", ylabel=L"Innovation~Error" )
+plot!(tProcess,2*sqrt.(Sk), label=L"+2\sqrt{S_k}" )
+plot!(tProcess,-2*sqrt.(Sk), label=L"-2\sqrt{S_k}" )
+plot!(legend=:outertopright)
+annotate!(85, 1.5e4, text("JEKF-KPH2", :left, 10, 13))
+
+pp=plot(plot1,plot2,plot3, layout=(3,1),size = (900,800))
+display(pp)
+# png("IMB-RDT_with_MRDE_PC_and_SPECIFIC_P0")
+
+
+
+
+
+
+gr(xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+tProcess=Array(timeEstimations)'
+# plot Innovation magnitude bound test
+innovation_error=Array(Classic_innovation_error)
+Sk=Array(Classic_Sk)
+plot1=plot(tProcess,innovation_error,label=L"Innovation~error~of~JEKF-Classic",xlabel=L"time(h)",color=:purple, ylabel=L"Innovation~Error" ,linestyle=:solid, lw=lws)
+plot!(tProcess,2*sqrt.(Sk),  label=L"+2\sqrt{S_k}~of~JEKF-Classic",color=:purple ,linestyle=:solid, lw=lws)
+plot!(tProcess,-2*sqrt.(Sk),label=L"-2\sqrt{S_k}~of~JEKF-Classic" ,color=:purple,linestyle=:solid, lw=lws)
+plot!(legend=:outertopright)
+# annotate!(85, 1.5e4, text("JEKF-Classic", :left, 10, 13))
+
+innovation_error=Array(SANTO_innovation_error)
+Sk=Array(SANTO_Sk)
+plot!(tProcess,innovation_error,label=L"Innovation~error~of~JEKF-SANTO",xlabel=L"time(h)", ylabel=L"Innovation~Error" ,color=:blue,linestyle=:dot, lw=lws)
+plot!(tProcess,2*sqrt.(Sk), label=L"+2\sqrt{S_k}~of~JEKF-SANTO" ,color=:blue,linestyle=:dot, lw=lws)
+plot!(tProcess,-2*sqrt.(Sk),  label=L"-2\sqrt{S_k}~of~JEKF-SANTO" ,color=:blue,linestyle=:dot, lw=lws )
+plot!(legend=:outertopright)
+# annotate!(85, 1.4e4, text("JEKF-SANTO", :left, 10, 13))
+
+innovation_error=Array(KPH2_innovation_error)
+Sk=Array(KPH2_Sk)
+plot!(tProcess,innovation_error,label=L"Innovation~error~of~JEKF-KPH2",xlabel=L"time(h)", ylabel=L"Innovation~Error" ,color=:green,linestyle=:dashdot, lw=lws)
+plot!(tProcess,2*sqrt.(Sk), label=L"+2\sqrt{S_k}~of~JEKF-KPH2" ,color=:green,linestyle=:dashdot, lw=lws )
+plot!(tProcess,-2*sqrt.(Sk),  label=L"-2\sqrt{S_k}~of~JEKF-KPH2",color=:green,linestyle=:dashdot , lw=lws )
+plot!(legend=:outertopright)
+# annotate!(85, 1.5e4, text("JEKF-KPH2", :left, 10, 13))
+
+pp=plot(plot1,size = (1300,500),left_margin=5mm, bottom_margin=5mm)
+display(pp)
+png("IMB-RDT_with_MRDE_PC_and_SPECIFIC_P0")
+
+
+
+
+
+
+
+
+
+
+
+
+################ kalman gain
+
+plot_K1=plot(Array(timeEstimations)',(Array(Classic_k_muGLC)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"\textbf{K}_k~of~\mu GLC", lw=lws)
+plot!(Array(timeEstimations)',(Array(SANTO_k_muGLC)), label = "JEKF-SANTO",color=:blue , lw=lws )
+plot!(Array(timeEstimations)',(Array(KPH2_k_muGLC)), label = "JEKF-KPH2",color=:green , lw=lws )
+plot!(legend=:topright)
+# annotate!(80, 5e-13, text("\muGLC", :left, 10, 17))
+display(plot_K1)
+
+plot_K2=plot(Array(timeEstimations)',(Array(Classic_k_muLAC)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"\textbf{K}_k~of~\mu LAC", lw=lws)
+plot!(Array(timeEstimations)',(Array(SANTO_k_muLAC)), label = "JEKF-SANTO",color=:blue , lw=lws )
+plot!(Array(timeEstimations)',(Array(KPH2_k_muLAC)), label = "JEKF-KPH2",color=:green , lw=lws )
+plot!(legend=:topright)
+display(plot_K2)
+
+plot_K3=plot(Array(timeEstimations)',(Array(Classic_k_muAAV)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"\textbf{K}_k~of~\mu rAAV", lw=lws)
+plot!(Array(timeEstimations)',(Array(SANTO_k_muAAV)), label = "JEKF-SANTO",color=:blue , lw=lws )
+plot!(Array(timeEstimations)',(Array(KPH2_k_muAAV)), label = "JEKF-KPH2",color=:green , lw=lws )
+plot!(legend=:topright)
+display(plot_K3)
+
+pp=plot(plot_K1,plot_K2,plot_K3, layout=(3,1),size = (800,700),left_margin=5mm, bottom_margin=5mm)
+# savefig(abs_path*"/JEKF-SANTO/results_analyze/figs/real_dt/estimations_RD_Puncorrelated_sp0.png")
+
+display(pp)
+png("kalman_gain_RDT_B_with_MRDE_PC_and_SPECIFIC_P0")
+
+
+
+
+
+################ SE
+lws=3.5
+gr(xtickfontsize=13, ytickfontsize=13, xguidefontsize=16, yguidefontsize=16, legendfontsize=11);
+
+plot_SE=plot(Array(timeEstimations)',(Array(Classic_SE_Xv)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"SE~of~Xv", lw=lws,linestyle=:solid)
+plot!(Array(timeEstimations)',(Array(SANTO_SE_Xv)), label = "JEKF-SANTO",color=:blue , lw=lws,linestyle=:dot )
+plot!(Array(timeEstimations)',(Array(KPH2_SE_Xv)), label = "JEKF-KPH2",color=:green , lw=lws ,linestyle=:dashdot)
+# plot!(legend=:outertopright)
+plot!(legend=:bottomright,size = (900,400),left_margin=5mm, bottom_margin=5mm)
+display(plot_SE)
+png("SE_xv_RD_with_MRDE_PC_and_SPECIFIC_P0")
+
+
+plot_SE1=plot(Array(timeEstimations)',(Array(Classic_SE_GLC)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"SE~of~GLC", lw=lws)
+plot_SE2=plot(Array(timeEstimations)',(Array(SANTO_SE_GLC)), label = "JEKF-SANTO",color=:blue ,xlabel=L"time(h)", ylabel=L"SE~of~GLC", lw=lws )
+plot_SE3=plot(Array(timeEstimations)',(Array(KPH2_SE_GLC)), label = "JEKF-KPH2",color=:green ,xlabel=L"time(h)", ylabel=L"SE~of~GLC", lw=lws )
+pp=plot(plot_SE1,plot_SE2,plot_SE3, layout=(3,1),size = (900,800),left_margin=5mm, bottom_margin=5mm)
+display(pp)
+png("SE_GLC_RD_with_MRDE_PC_and_SPECIFIC_P0")
+
+
+plot_SE1=plot(Array(timeEstimations)',(Array(Classic_SE_LAC)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"SE~of~LAC", lw=lws)
+plot_SE2=plot(Array(timeEstimations)',(Array(SANTO_SE_LAC)), label = "JEKF-SANTO",color=:blue , xlabel=L"time(h)",ylabel=L"SE~of~LAC", lw=lws )
+plot_SE3=plot(Array(timeEstimations)',(Array(KPH2_SE_LAC)), label = "JEKF-KPH2",color=:green ,xlabel=L"time(h)", ylabel=L"SE~of~LAC", lw=lws )
+pp=plot(plot_SE1,plot_SE2,plot_SE3, layout=(3,1),size = (900,800),left_margin=5mm, bottom_margin=5mm)
+display(pp)
+png("SE_LAC_RD_with_MRDE_PC_and_SPECIFIC_P0")
+
+
+plot_SE1=plot(Array(timeEstimations)',(Array(Classic_SE_rAAV)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"SE~of~rAAV", lw=lws)
+plot_SE2=plot(Array(timeEstimations)',(Array(SANTO_SE_rAAV)), label = "JEKF-SANTO",color=:blue , xlabel=L"time(h)",ylabel=L"SE~of~rAAV", lw=lws )
+plot_SE3=plot(Array(timeEstimations)',(Array(KPH2_SE_rAAV)), label = "JEKF-KPH2",color=:green , xlabel=L"time(h)",ylabel=L"SE~of~rAAV", lw=lws )
+pp=plot(plot_SE1,plot_SE2,plot_SE3, layout=(3,1),size = (900,800),left_margin=5mm, bottom_margin=5mm)
+display(pp)
+png("SE_rAAV_RD_with_MRDE_PC_and_SPECIFIC_P0")
+
+
+plot_SE1=plot(Array(timeEstimations)',(Array(Classic_SE_muGLC)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"SE~of~\mu GLC", lw=lws)
+plot_SE2=plot(Array(timeEstimations)',(Array(SANTO_SE_muGLC)), label = "JEKF-SANTO",color=:blue , xlabel=L"time(h)",ylabel=L"SE~of~\mu GLC", lw=lws )
+plot_SE3=plot(Array(timeEstimations)',(Array(KPH2_SE_muGLC)), label = "JEKF-KPH2",color=:green ,xlabel=L"time(h)", ylabel=L"SE~of~\mu GLC", lw=lws )
+pp=plot(plot_SE1,plot_SE2,plot_SE3, layout=(3,1),size = (900,800),left_margin=5mm, bottom_margin=5mm)
+display(pp)
+png("SE_muGLC_RD_with_MRDE_PC_and_SPECIFIC_P0")
+
+
+plot_SE1=plot(Array(timeEstimations)',(Array(Classic_SE_muLAC)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"SE~of~\mu LAC", lw=lws)
+plot_SE2=plot(Array(timeEstimations)',(Array(SANTO_SE_muLAC)), label = "JEKF-SANTO",color=:blue , xlabel=L"time(h)",ylabel=L"SE~of~\mu LAC", lw=lws )
+plot_SE3=plot(Array(timeEstimations)',(Array(KPH2_SE_muLAC)), label = "JEKF-KPH2",color=:green, xlabel=L"time(h)",ylabel=L"SE~of~\mu LAC" , lw=lws )
+pp=plot(plot_SE1,plot_SE2,plot_SE3, layout=(3,1),size = (900,800),left_margin=5mm, bottom_margin=5mm)
+display(pp)
+png("SE_muLAC_RD_with_MRDE_PC_and_SPECIFIC_P0")
+
+plot_SE=plot(Array(timeEstimations)',(Array(Classic_SE_murAAV)), label = "JEKF-Classic",color=:purple ,xlabel=L"time(h)", ylabel=L"SE~of~\mu rAAV", lw=lws)
+plot!(Array(timeEstimations)',(Array(SANTO_SE_murAAV)), label = "JEKF-SANTO",color=:blue , xlabel=L"time(h)",ylabel=L"SE~of~\mu rAAV", lw=lws )
+plot!(Array(timeEstimations)',Array(KPH2_SE_murAAV), label = "JEKF-KPH2",color=:green , xlabel=L"time(h)",ylabel=L"SE~of~\mu rAAV", lw=lws )
+pp=plot(plot_SE1,plot_SE2,plot_SE3, layout=(3,1),size = (900,800),left_margin=5mm, bottom_margin=5mm)
+display(pp)
+png("SE_murAAV_RD_with_MRDE_PC_and_SPECIFIC_P0")
+
+
 
 
 
 
 
 # println("PC and specific P(0)")
-
-plot0=plot(Array(timeRD)',Array(xv_online_measurement_RD_AAV),color=:lightblue, label = "Xv online (noise)", lw=5.5, xlabel=L"time(h)",ylabel=L"Xv(    cells/mL)")
+gr();
+plot0=plot(Array(timeRD)',Array(xv_online_measurement_RD_AAV),color=:lightblue, label = "Xv online (noise)", lw=5.5, xlabel=L"time(h)",ylabel=L"Xv(cells/mL)")
 plot!(Array(timeEstimations)',Array(Classic_Xv),color=:purple, label = "JEKF-Classic", lw=2.5,xlabel=L"time(h)",ylabel=L"Xv( cells/mL)")
 plot!(Array(timeEstimations)',Array(SANTO_Xv),color=:blue, label = "JEKF-SANTO", lw=2.5,xlabel=L"time(h)",ylabel=L"Xv(    cells/mL)")
 plot!(Array(timeEstimations)',Array(KPH2_Xv),color=:green,label = "JEKF-KPH2",  lw=2.5,xlabel=L"time(h)",ylabel=L"Xv(    cells/mL)")
