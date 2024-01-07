@@ -129,11 +129,6 @@ for approach=[000,100,200] %[JEKF-Classic,JEKF-SANTO,JEKF-KPH2]
         R=   130e5;%ok       
         Q_xv=50e5;
         
-%          R=   8e6;%ok       
-%          Q_xv=50e6;
-
-%         R=   1000e4;%ok       
-%         Q_xv=500e4;
         
         if approach == 000 %JEKF-Classic
 
